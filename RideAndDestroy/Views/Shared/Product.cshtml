@@ -1,0 +1,16 @@
+﻿@model Product 
+<div class="col">
+    <div class="card h-100">
+      <img src="~/img/vel/vel.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">@Model.Description</p>
+      </div>
+      <div class="card-footer">
+         <form name="AddToCart">
+           <p class="card-text"><small class="text-muted">@Model.Price.ToString("C")</small></p>
+           <button type="submit" class="btn btn-primary">В корзину</button>
+       </form>
+      </div>
+    </div>
+  </div>

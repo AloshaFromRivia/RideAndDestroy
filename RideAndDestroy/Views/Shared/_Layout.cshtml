@@ -6,7 +6,7 @@
     <link rel="shortcut icon" href="~/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" asp-href-include="~/lib/bootstrap/css/**/*.css" />
     <link rel="stylesheet" asp-href-include="~/lib/font-awesome/css/**/*.css" />
-    <title>@ViewBag.Title</title>
+    <title>Ride And Destroy | @ViewBag.Title</title>
 </head>
 <body style="background-image: url(/img/bg.png)">
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -43,8 +43,8 @@
   </div>
 </nav>
 <div class="container col-6 mt-4 mb-4 p-4">
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
+      <form asp-action="Shop" asp-controller="Home" class="d-flex">
+        <input name="id" class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
         <button class="btn btn-success" type="submit">Найти</button>
       </form>
       @RenderBody()
