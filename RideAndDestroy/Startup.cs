@@ -30,7 +30,7 @@ namespace RideAndDestroy
            app.UseEndpoints(endpoints =>
             endpoints.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Shop}/{id?}"
+                pattern: "{controller=Home}/{action=Index}/{productName?}/{*catchall}"
                 )
             );
         }
