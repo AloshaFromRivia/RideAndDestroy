@@ -3,11 +3,11 @@
     Layout = "_Layout";
 }
 <div class="d-flex p-1">
-     @Html.ActionLink("Все","Shop","Home",new {productCategoryId=0},new {@class=$"btn btn-primary m-1"})
-     @Html.ActionLink("Велосипеды","Shop","Home",new {productCategoryId=1},new {@class="btn btn-primary m-1"})
-      @Html.ActionLink("Защита","Shop","Home",new {productCategoryId=2},new {@class="btn btn-primary m-1"})
-       @Html.ActionLink("Одежда","Shop","Home",new {productCategoryId=3},new {@class="btn btn-primary m-1"})
-        @Html.ActionLink("Запчасти","Shop","Home",new {productCategoryId=4},new {@class="btn btn-primary m-1"})
+     <a asp-route-productCategory="" asp-controller="Home" asp-action="Shop" class="btn m-1 btn-primary">Все</a>
+    @foreach (var item in Model.Select(i=>i.Category).Distinct())
+   {
+    <a asp-route-productCategory=@item asp-controller="Home" asp-action="Shop" class="btn m-1 @(item==ViewBag.Category ? "btn-outline-primary" : "btn-primary")">@item</a>
+   }
 </div>
  @if (Model.Count()==0)
     {
@@ -21,5 +21,5 @@ else
         {
             @await Html.PartialAsync("Product",item)
         }
-</div> 
+</div>
 }

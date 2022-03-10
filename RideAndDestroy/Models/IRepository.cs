@@ -5,6 +5,7 @@ namespace RideAndDestroy.Models
     public interface IRepository
     {
         IEnumerable<Product> Products { get; }
-        IEnumerable<Category> Categories { get; }
+        void Add(Product product); 
+        void Remove(int id);
     }
 }

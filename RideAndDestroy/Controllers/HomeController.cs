@@ -19,18 +19,19 @@ namespace RideAndDestroy.Controllers
             return View();
         }
 
-        public ViewResult Shop(string productName, int productCategoryId=0)
+        public ViewResult Shop(string productName, string productCategory)
         {
             var products = Repository.Products;
             if (!string.IsNullOrEmpty(productName))
             {
                 products = products.Where(x => x.Name.Contains(productName));
             }
-            if (productCategoryId!=0)
+            if (!string.IsNullOrEmpty(productCategory))
             {
-                products= products.Where(p=>p.CategoryId == productCategoryId);
+                products= products.Where(p=>p.Category == productCategory);
             }
-            ViewBag.Title = "Каталог";
+            ViewBag.Category= productCategory;
+            ViewBag.Title = "Товары";
             return View(products);
         }
     }
