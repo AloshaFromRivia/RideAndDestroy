@@ -8,7 +8,6 @@ using System;
 using Microsoft.AspNetCore.Http;
 
 namespace RideAndDestroy.Controllers {
-
     public class AdminController : Controller {
         private IRepository repository;
         private IWebHostEnvironment _hostEnvironment;
@@ -25,25 +24,17 @@ namespace RideAndDestroy.Controllers {
                 .FirstOrDefault(p => p.Id == productId));
         
         [HttpPost]
-        public IActionResult Edit(Product product)
+        public IActionResult Edit(Product product,IFormFile image)
+        {
+            if (ModelState.IsValid)
             {
-             
-            if (ModelState.IsValid) {
-                ////Save image to wwwroot/image
-                //string wwwRootPath = _hostEnvironment.WebRootPath;
-                //string fileName = Path.GetFileNameWithoutExtension(items.file.FileName);
-                //string extension = Path.GetExtension(items.file.FileName);
-                //string path = Path.Combine(wwwRootPath + "/Image/", fileName);
-                //using (var fileStream = new FileStream(path, FileMode.Create))
-                //{
-                //    items.file.CopyToAsync(fileStream);
-                //    items.product.Image= System.IO. File.ReadAllBytes(path);
-                //}
-                ////Insert record
+                if (image != null) product.Image = GetBytesFromImage(image);
+                else product.Image = repository.Products.First(p => p.Id == product.Id).Image;
                 repository.Add(product);
                 TempData["message"] = $"{product.Name} has been saved";
                 return RedirectToAction("Index");
-            } else {
+            } else 
+            {
                 // there is something wrong with the data values
                 return View(product);
             }
@@ -57,5 +48,22 @@ namespace RideAndDestroy.Controllers {
             return RedirectToAction("Index");
         }
 
+        private byte[] GetBytesFromImage(IFormFile file)
+        {
+            byte[] fileBytes = null;
+            if (file.Length > 0)
+            {
+
+                using (var fs1 = file.OpenReadStream())
+                using (var ms1 = new MemoryStream())
+                {
+                    fs1.CopyTo(ms1);
+                    fileBytes = ms1.ToArray();
+                }
+            }
+
+            return fileBytes;
+        }
+        
     }
 }

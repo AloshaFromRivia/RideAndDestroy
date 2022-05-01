@@ -1,7 +1,7 @@
 ﻿
 @model Product
 @{
-    ViewBag.Title = "Edit Product";
+    ViewBag.Title = "Редактирование товаров";
     Layout = "_AdminLayout";
 }
 
@@ -27,9 +27,14 @@
         <div><span asp-validation-for="Price" class="text-danger"></span></div>
         <input asp-for="Price" class="form-control" />
     </div>
+     <div class="form-group">
+            <label for="image">Изображение</label>
+            <div><span asp-validation-for="Price" class="text-danger"></span></div>
+            <input name="image" id="image" class="form-control" type="file"/>
+        </div>
     <div class="text-center">
-        <button class="btn btn-primary" type="submit">Save</button>
-        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        <button class="btn btn-primary" type="submit">Сохранить</button>
+        <a asp-action="Index" class="btn btn-secondary">Закрыть</a>
     </div>
 </form>
 

@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 
 namespace RideAndDestroy.Models
 {
@@ -36,6 +37,7 @@ namespace RideAndDestroy.Models
                     dbEntry.Description = product.Description;
                     dbEntry.Price = product.Price;
                     dbEntry.Category = product.Category;
+                    if (product.Image != null) dbEntry.Image = product.Image;
                 }
             }
             SaveChanges();
