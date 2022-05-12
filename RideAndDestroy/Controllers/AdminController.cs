@@ -31,7 +31,7 @@ namespace RideAndDestroy.Controllers {
                 if (image != null) product.Image = GetBytesFromImage(image);
                 else product.Image = repository.Products.First(p => p.Id == product.Id).Image;
                 repository.Add(product);
-                TempData["message"] = $"{product.Name} has been saved";
+                TempData["message"] = $"{product.Name} был сохранен";
                 return RedirectToAction("Index");
             } else 
             {
